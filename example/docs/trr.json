@@ -1,0 +1,1921 @@
+{
+	"info": {
+		"_postman_id": "3c48e0d8-28d5-4d8c-a4ab-6bd63a64f3d8",
+		"name": "trr",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "super admin",
+					"item": [
+						{
+							"name": "register-sa",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"Fayaz-admin\",\n    \"email\":\"admin1@trr.com\",\n    \"password\":\"Password@1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/auth/register/sa",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth",
+										"register",
+										"sa"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add super-admin",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Test-Super-admin\",\n    \"email\": \"fayaz.edc@gmail.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/auth/add/sa",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"auth",
+										"add",
+										"sa"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "admin",
+					"item": [
+						{
+							"name": "get clients",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/client?page=1&limit=20",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"client"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "limit",
+											"value": "20"
+										}
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get admins",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/admin",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"admin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get super admins",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/sa",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"sa"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "get executives",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/admin/executive",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"executive"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "disable user access",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\":\"6145665ea592c67f64e48a59\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/user/disable",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"user",
+										"disable"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "enable user access",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\":\"6145665ea592c67f64e48a59\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/user/enable",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"user",
+										"enable"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "reject user access",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\":\"6145665ea592c67f64e48a59\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/user/reject",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"user",
+										"reject"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "suspend user access",
+							"request": {
+								"method": "PATCH",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"userId\":\"6145665ea592c67f64e48a59\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/user/suspend",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"user",
+										"suspend"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add-admin",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"Fayaz-client\",\n    \"email\":\"fayaz_client@trr.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/add/admin",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"add",
+										"admin"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "add-executive",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"Fayaz-client\",\n    \"email\":\"fayaz_client@trr.com\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/admin/add/executive",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"admin",
+										"add",
+										"executive"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "executive",
+					"item": [
+						{
+							"name": "register Copy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\" : \"Fayaz-client\",\n    \"email\":\"fayaz_client@trr.com\",\n    \"password\":\"Password@1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlAPIv1}}/auth/register",
+									"host": [
+										"{{baseUrlAPIv1}}"
+									],
+									"path": [
+										"auth",
+										"register"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "register",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\" : \"Fayaz-client\",\n    \"email\":\"fayazfz07@gmail.com\",\n    \"password\":\"Password@1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/register",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"register"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"admin1@trr.com\",\n    \"password\":\"Password@1\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/auth/login",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "login - request password change",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\":\"admin1@trr.com\",\n    \"password\":\"Password@1\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrlAPIv1}}/auth/login",
+									"host": [
+										"{{baseUrlAPIv1}}"
+									],
+									"path": [
+										"auth",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "187"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"bb-T1dWrv7CHfzPoJZsTPZMrGN1SpM\""
+								},
+								{
+									"key": "Date",
+									"value": "Tue, 07 Sep 2021 07:21:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"You are required to change your password, please check your email for an OTP which will be helpful to set your new password\",\n    \"data\": {\n        \"changePassword\": true\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "verify user",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrlAPIv1}}/auth/token/verify?t=b8725071c46a9f0af208693caf135a177def7c2d77b702720a38eeab3bd6fc79d95e90e3e1be0fdd12bf20a8e345525812a0a75d50545e93c78c1908d7f733f1",
+							"host": [
+								"{{baseUrlAPIv1}}"
+							],
+							"path": [
+								"auth",
+								"token",
+								"verify"
+							],
+							"query": [
+								{
+									"key": "t",
+									"value": "b8725071c46a9f0af208693caf135a177def7c2d77b702720a38eeab3bd6fc79d95e90e3e1be0fdd12bf20a8e345525812a0a75d50545e93c78c1908d7f733f1"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resend token",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"fayazfz07@gmail.com\",\n    \"password\":\"Fayaz@07\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlAPIv1}}/auth/token/resend",
+							"host": [
+								"{{baseUrlAPIv1}}"
+							],
+							"path": [
+								"auth",
+								"token",
+								"resend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update password",
+					"request": {
+						"method": "PATCH",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ0b2RvLTcuaGVyb2t1YXBwLmNvbSIsInN1YiI6ImFwaV9BY2Nlc3NUb2tlbiIsImlzcyI6InRvZG8tNy5oZXJva3VhcHAuY29tIiwiZW1haWwiOiJmYXlhemZ6MDdAZ21haWwuY29tIiwiaWF0IjoxNTk3MDYzNDQ4LCJleHAiOjE1OTc5Mjc0NDh9.mwvCnbqxllnZELmHwibRtHljwMsWvZtAGoHA1b4HYLrnBs7zhaUpvwSli--sJpzTokqyMitFaICEK25TO7S6Y-f2PViK6Hec6GK9fSfA0Rb7obn0NAeEdFEdZg56xsZksYa4UjuSoZwhg8CBAJFD21JNvmo7M4OI6P0oGSYixmms7mh1YCtuH9JbupLU7SVgas9hENqKn4fkTFdOyMR93f7SMCpGXqjZIB_jo0cOdN07V38KaMtYp6BRcJLvc-_9RIbo7di2Om9-JxlqKVdrmOnhMOGIW8RFwRpv3QgJEjOdmCiCf6y8ynjGjzxDZkhAEgO4qxGzXEnOq5vWtER3iQ",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"oldPassword\":\"Fayaz@07a\",\n    \"newPassword\":\"Fayaz@07\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlAPIv1}}/auth/password",
+							"host": [
+								"{{baseUrlAPIv1}}"
+							],
+							"path": [
+								"auth",
+								"password"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "send password reset code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"fayazfz07@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlAPIv1}}/auth/password/reset/code",
+							"host": [
+								"{{baseUrlAPIv1}}"
+							],
+							"path": [
+								"auth",
+								"password",
+								"reset",
+								"code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "resend password reset code",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"fayazfz07@gmail.com\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlAPIv1}}/auth/password/reset/code/resend",
+							"host": [
+								"{{baseUrlAPIv1}}"
+							],
+							"path": [
+								"auth",
+								"password",
+								"reset",
+								"code",
+								"resend"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "password reset",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"email\":\"fayazfz07@gmail.com\",\n    \"otp\": 284441,\n    \"password\":\"Fayaz@07\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlAPIv1}}/auth/password/reset/",
+							"host": [
+								"{{baseUrlAPIv1}}"
+							],
+							"path": [
+								"auth",
+								"password",
+								"reset",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "token",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Basic eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJUb2tlblVzZXJzIiwic3ViIjoiYXBpX1JlZnJlc2hUb2tlbiIsImlzcyI6IkZheWF6IiwidXNlcl9pZCI6IjVmM2NlOGUyYzcwYzY4MjdiOTQwMTk3ZCIsImlhdCI6MTU5Nzg1NTQwNywiZXhwIjoxNTk4NzE5NDA3fQ.TScekhuk0mdVKLqRUPaxHxvM_Dmrz2pnNB4-7bmtZeL_k2o19gV0vmolZm4e819dWNyd4Q4DFr7okNzLTAvGD9JmoUqYPTJILQ3oOPcNPaTqSXcdAH5lZgiE1-jERdR_-X-1Ntthaazjx43LmtqvQQyI27LeFUbpjYDMvZN1v10",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrlAPIv1}}/auth/token",
+							"host": [
+								"{{baseUrlAPIv1}}"
+							],
+							"path": [
+								"auth",
+								"token"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "delete account",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJ0b2RvLTcuaGVyb2t1YXBwLmNvbSIsInN1YiI6ImFwaV9BY2Nlc3NUb2tlbiIsImlzcyI6InRvZG8tNy5oZXJva3VhcHAuY29tIiwiZW1haWwiOiJmYXlhemZ6MDdAZ21haWwuY29tIiwiaWF0IjoxNTk3MDQwNTI5LCJleHAiOjE1OTc5MDQ1Mjl9.wHRqp_Yif6lblmcsiZYDJT2qKBTmdpbwANv_SV5Si2TE9wnhhr3Ier1MqRvh_jG20fAZ6Y-_k9FvBvvWbzVdoTuxIRocpvzIUX4q4m9i9y7tT5h23cDwHjtLssE2ZE1ddbdrqVECimyZjxM_Ac6Swfu423vjW8PwZfbPJmgrx3YxCMWwBVsWgZTYJJuJ9bfIWZMh-J4y2NJ30AqGlsYEWjCn6nGf24yzWAp2BmZIA0mjkTw_r4uW8VTA7yJMpV47XmJ22DkgP598RD24p6-NyFub0127egIvJsVzIJT3wGTLw-I7mOzNCNlpZf_Zeacz6BrUAKg4WCSEWUL_v3mWAw",
+									"type": "string"
+								}
+							]
+						},
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "",
+								"value": "",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrlAPIv1}}/auth/",
+							"host": [
+								"{{baseUrlAPIv1}}"
+							],
+							"path": [
+								"auth",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "facebook login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accessToken\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlAPIv1}}/auth/facebook",
+							"host": [
+								"{{baseUrlAPIv1}}"
+							],
+							"path": [
+								"auth",
+								"facebook"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "google login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"accessToken\":\"\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlAPIv1}}/auth/google",
+							"host": [
+								"{{baseUrlAPIv1}}"
+							],
+							"path": [
+								"auth",
+								"google"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "user",
+			"item": [
+				{
+					"name": "get user",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "",
+								"type": "text",
+								"disabled": true
+							}
+						],
+						"url": {
+							"raw": "{{baseUrlAPIv1}}/user/",
+							"host": [
+								"{{baseUrlAPIv1}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "update user",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJUb2tlblVzZXJzIiwic3ViIjoiYXBpX0FjY2Vzc1Rva2VuIiwiaXNzIjoiRmF5YXoiLCJlbWFpbCI6InNhbGVlbWFiZHVsMDU1MDUwQGdtYWlsLmNvbSIsImlhdCI6MTU5ODAzNDgxNSwiZXhwIjoxNTk4MTIxMjE1fQ.Vzd5q5kUWZtxqSmsr_1ES2TAgpWKGT13N3UB-kbveVMJ8048FL9W-41hPn7kMJ-gKPZbp5HRdm2I5SzBxPumnJIvMUmDpob6IDjQP57PWt--ktO49p6ADrXRGaWa6vZXJvPghZZ3a4S9J_0ZWqff5FWjsMqQek5ZS-9cm9Ukga8",
+									"type": "string"
+								}
+							]
+						},
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"gender\":\"Female\",\n    \"age\": 25,\n    \"locatin\":\"Nizamabad\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{baseUrlAPIv1}}/user/",
+							"host": [
+								"{{baseUrlAPIv1}}"
+							],
+							"path": [
+								"user",
+								""
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "country",
+			"item": [
+				{
+					"name": "add country",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"India\",\n    \"code\": \"IN\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/country",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"country"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "add country success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"India\",\n    \"code\": \"IN\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/country",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"country"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "251"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"fb-4jQ0yAjd/V+l26Z+iDq4jNyEtzg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Sep 2021 18:12:25 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Country added successfully\",\n    \"data\": {\n        \"name\": \"India\",\n        \"code\": \"IN\",\n        \"addedBy\": \"614236b1cfc1db05d429525b\",\n        \"_id\": \"61423789d0267d553a14b56e\",\n        \"createdAt\": \"2021-09-15T18:12:25.725Z\",\n        \"updatedAt\": \"2021-09-15T18:12:25.725Z\",\n        \"__v\": 0\n    }\n}"
+						},
+						{
+							"name": "add country failed",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"India\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/country",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"country"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "56"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"38-6cq68NRLALeZd/aODtGO4MuJr5g\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Sep 2021 18:12:48 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"failed\",\n    \"message\": \"Country Code is required\"\n}"
+						}
+					]
+				},
+				{
+					"name": "get countries",
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": []
+						},
+						"url": {
+							"raw": "{{url}}/country",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"country"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get countries success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/country",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"country"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "244"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f4-f/0FWdtFG7wSwwSeDWdt9pS0gVA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Sep 2021 18:16:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Fetched countries\",\n    \"data\": [\n        {\n            \"_id\": \"61423789d0267d553a14b56e\",\n            \"name\": \"India\",\n            \"code\": \"IN\",\n            \"addedBy\": \"614236b1cfc1db05d429525b\",\n            \"createdAt\": \"2021-09-15T18:12:25.725Z\",\n            \"updatedAt\": \"2021-09-15T18:12:25.725Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/country/code",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"country",
+								"code"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "state",
+			"item": [
+				{
+					"name": "add state",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Andhra Pradesh\",\n    \"code\": \"AP\",\n    \"countryId\": \"61423789d0267d553a14b56e\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/state",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"state"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "add state -fail",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Andhra Pradesh\",\n    \"code\": \"AP\",\n    \"countryId\": \"61423789d0267d553a14b56f\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/state",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"state"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "68"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"44-Mc+AvHcpSZGYj7cZj9WrqIJjx3c\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Sep 2021 18:28:40 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"failed\",\n    \"message\": \"Invalid Country Id/Country not found\"\n}"
+						},
+						{
+							"name": "add state - success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\": \"Andhra Pradesh\",\n    \"code\": \"AP\",\n    \"countryId\": \"61423789d0267d553a14b56e\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{url}}/state",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"state"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "295"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"127-pLyHJC7LV7sjaPQImulvdxgu88c\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Sep 2021 18:28:59 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"State added successfully\",\n    \"data\": {\n        \"name\": \"Andhra Pradesh\",\n        \"code\": \"AP\",\n        \"country\": \"61423789d0267d553a14b56e\",\n        \"addedBy\": \"614236b1cfc1db05d429525b\",\n        \"_id\": \"61423b6b230d5ed583f7ecc4\",\n        \"createdAt\": \"2021-09-15T18:28:59.525Z\",\n        \"updatedAt\": \"2021-09-15T18:28:59.525Z\",\n        \"__v\": 0\n    }\n}"
+						}
+					]
+				},
+				{
+					"name": "get states",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/state",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"state"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "get countries success",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/country",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"country"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "244"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"f4-f/0FWdtFG7wSwwSeDWdt9pS0gVA\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Sep 2021 18:16:06 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Fetched countries\",\n    \"data\": [\n        {\n            \"_id\": \"61423789d0267d553a14b56e\",\n            \"name\": \"India\",\n            \"code\": \"IN\",\n            \"addedBy\": \"614236b1cfc1db05d429525b\",\n            \"createdAt\": \"2021-09-15T18:12:25.725Z\",\n            \"updatedAt\": \"2021-09-15T18:12:25.725Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						},
+						{
+							"name": "get states",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{url}}/state",
+									"host": [
+										"{{url}}"
+									],
+									"path": [
+										"state"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "Content-Security-Policy",
+									"value": "default-src 'self';base-uri 'self';block-all-mixed-content;font-src 'self' https: data:;frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests"
+								},
+								{
+									"key": "X-DNS-Prefetch-Control",
+									"value": "off"
+								},
+								{
+									"key": "Expect-CT",
+									"value": "max-age=0"
+								},
+								{
+									"key": "X-Frame-Options",
+									"value": "SAMEORIGIN"
+								},
+								{
+									"key": "Strict-Transport-Security",
+									"value": "max-age=15552000; includeSubDomains"
+								},
+								{
+									"key": "X-Download-Options",
+									"value": "noopen"
+								},
+								{
+									"key": "X-Content-Type-Options",
+									"value": "nosniff"
+								},
+								{
+									"key": "X-Permitted-Cross-Domain-Policies",
+									"value": "none"
+								},
+								{
+									"key": "Referrer-Policy",
+									"value": "no-referrer"
+								},
+								{
+									"key": "X-XSS-Protection",
+									"value": "0"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "287"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"11f-dSNFknQkxFltn2JxES62/88B1Lg\""
+								},
+								{
+									"key": "Date",
+									"value": "Wed, 15 Sep 2021 18:29:35 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"status\": \"success\",\n    \"message\": \"Fetched states\",\n    \"data\": [\n        {\n            \"_id\": \"61423b6b230d5ed583f7ecc4\",\n            \"name\": \"Andhra Pradesh\",\n            \"code\": \"AP\",\n            \"country\": \"61423789d0267d553a14b56e\",\n            \"addedBy\": \"614236b1cfc1db05d429525b\",\n            \"createdAt\": \"2021-09-15T18:28:59.525Z\",\n            \"updatedAt\": \"2021-09-15T18:28:59.525Z\",\n            \"__v\": 0\n        }\n    ]\n}"
+						}
+					]
+				},
+				{
+					"name": "get code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/state/code",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"state",
+								"code"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "branch",
+			"item": [
+				{
+					"name": "get code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/branch/code",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"branch",
+								"code"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "add branch",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Andhra Pradesh\",\n    \"code\": \"AP\",\n    \"countryId\": \"61423789d0267d553a14b56e\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/branch",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"branch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get branches",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/branch",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"branch"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign area to branch",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"areaId\": \"61436cbcbbdd2be1a181aeba\",\n    \"branchId\": \"61423d361dfaf95db311c77a\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/branch/assign/area",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"branch",
+								"assign",
+								"area"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "assign executive to branch",
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"executiveId\": \"61436cbcbbdd2be1a181aeba\",\n    \"branchId\": \"61423d361dfaf95db311c77a\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/branch/assign/executive",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"branch",
+								"assign",
+								"executive"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "area",
+			"item": [
+				{
+					"name": "add area",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Panjagutta\",\n    \"code\": \"PUNJ\",\n    \"countryId\": \"61423789d0267d553a14b56e\",\n    \"stateId\": \"61423b6b230d5ed583f7ecc4\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{url}}/area",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"area"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get areas",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/area",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"area"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "get code",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{url}}/area/code",
+							"host": [
+								"{{url}}"
+							],
+							"path": [
+								"area",
+								"code"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "faq",
+			"item": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJmYXlheiIsInN1YiI6ImFwaV9BY2Nlc3NUb2tlbiIsImlzcyI6ImZheWF6IiwiYXV0aElkIjoiNjE0MjM2YjFjZmMxZGIwNWQ0Mjk1MjViIiwiaWF0IjoxNjMxNzI5MzcwLCJleHAiOjE2NDAzNjkzNzB9.TEVDa7TJHjLCMUcOOiWj3dbZB_GGoZlB-yt4RwQk2peCRL0ukJ-hVvntiMpXkpFPxfQPuuvaC4BZNuXUmGh7qw",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "url",
+			"value": "localhost:6000/api/v1"
+		}
+	]
+}

@@ -5,13 +5,24 @@ A tiny toolkit that generates Markdown docs using the postman collection v2.1
 usage:
 
 ```bash
-node index -f example/colln.json -t example
+$ node index -f example/colln.json -t example
 ```
 
 check the example [here](example/docs/post-my-api.md)
 
 Supports only Collection schema v2.1, collections present in nested folders also works fine!
 I just worked with `JSON` format, feel free to test it and contribute :)
+
+
+## For generating axios-react api requests
+```bash
+$ node axios_reqs -f trr.json -t ./trr-docs/
+```
+
+## For generating urls api requests
+```bash
+$ node json_urls -f trr.json -t ./trr-docs/
+```
 
 ---
 

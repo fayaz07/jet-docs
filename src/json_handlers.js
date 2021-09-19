@@ -1,6 +1,7 @@
 const helpers = require("./helpers");
 const constants = require("./constants");
 const fileHandlers = require("./file_handlers");
+const { doc } = require("prettier");
 
 module.exports.getVariables = (jsonFile) => {
   const cVariablesRaw = jsonFile.variable;
@@ -18,7 +19,13 @@ module.exports.generateDocs = (json, variables, outputDir) => {
   // console.log("\n\n\n\n");
   var info = buildAPIInfo(json, variables);
   // console.log(info);
-  const routes = buildRoutes(json.info.name, json.item, variables, outputDir);
+  const { result, urlsForJS } = buildRoutes(json.info.name, json.item, variables, outputDir);
+  const routes = result;
+  fileHandlers.createFileAndWrite(
+    "urls.js",
+    outputDir,
+    urlsForJS
+  )
   fileHandlers.createFileAndWrite(
     helpers.append(json.info.name, ".md"),
     outputDir,
@@ -100,12 +107,16 @@ function buildAuthTypeUsage(json) {
 function buildRoutes(parent, routes, variables, outputDir) {
   var hyperlinks = "";
   var routesRes = "";
+  var urlsForJS = "module.exports = Object({\n";
+
   routes.forEach((r) => {
     // check for grouped routes
     if (r.item) {
+      console.log("------item")
       // this is a grouped route
       var result = buildGroupedRoutes(parent, r, variables, outputDir);
       // console.log(result);
+      urlsForJS += result.urls;
       hyperlinks += helpers.append(
         constants.newLine,
         "- ",
@@ -115,8 +126,13 @@ function buildRoutes(parent, routes, variables, outputDir) {
         )
       );
     } else {
+      console.log("------not item")
       // single route
-      routesRes += buildSingleRoute(r, variables);
+      const {docs, url} = buildSingleRoute(r, variables);
+      routesRes += docs;
+
+      urlsForJS +=  url;
+
       hyperlinks += helpers.append(
         constants.newLine,
         "- ",
@@ -132,10 +148,14 @@ function buildRoutes(parent, routes, variables, outputDir) {
     routesRes
   );
   // console.log(res);
-  return res;
+  urlsForJS += "});"; 
+  return { result: res, urlsForJS: urlsForJS };
 }
 
 function buildSingleRoute(r, variables) {
+  var url = `\n${helpers.replaceSpacesAndHyphens(
+    r.name.toString()
+  )}:`
   const requestType = r.request.method.toString().toLowerCase();
 
   // write link target
@@ -150,6 +170,7 @@ function buildSingleRoute(r, variables) {
   // write method and
   var met;
   if (requestType == "get") {
+    url += `\"${helpers.removeQueryParams(r.request.url.raw)}\"`
     met = helpers.method(
       requestType,
       helpers.replaceVariables(
@@ -158,6 +179,7 @@ function buildSingleRoute(r, variables) {
       )
     );
   } else {
+    url += `\"${r.request.url.raw}\"`
     met = helpers.method(
       requestType,
       helpers.replaceVariables(r.request.url.raw, variables)
@@ -244,7 +266,7 @@ function buildSingleRoute(r, variables) {
   }
 
   _routesDocs += helpers.append(constants.newLine, "---", constants.newLine);
-  return _routesDocs;
+  return { docs: _routesDocs, url: url + ","};
 }
 
 function buildGroupedRoutes(parent, route, variables, outputDir) {
@@ -257,6 +279,7 @@ function buildGroupedRoutes(parent, route, variables, outputDir) {
     route.name,
     ".md"
   );
+  var urlsForJS = "";
   var content = "";
   var hyperlinks = "";
   route.item.forEach((r) => {
@@ -268,6 +291,7 @@ function buildGroupedRoutes(parent, route, variables, outputDir) {
         variables,
         outputDir
       );
+      urlsForJS += result.urls;
       hyperlinks += helpers.append(
         constants.newLine,
         "- ",
@@ -284,7 +308,9 @@ function buildGroupedRoutes(parent, route, variables, outputDir) {
         "- ",
         helpers.link(r.name, helpers.append("#", r.name))
       );
-      content += buildSingleRoute(r, variables);
+      const {docs, url} = buildSingleRoute(r, variables);
+      content += docs;
+      urlsForJS = url;
     }
   });
   fileHandlers.createFileAndWrite(
@@ -300,7 +326,7 @@ function buildGroupedRoutes(parent, route, variables, outputDir) {
       content
     )
   );
-  return { fileName: fileName };
+  return { fileName: fileName, urls: urlsForJS };
 }
 
 function buildResponse(r) {

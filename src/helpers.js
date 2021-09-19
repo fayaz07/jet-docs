@@ -3,7 +3,10 @@ const c = require("./constants");
 
 module.exports.removeQueryParams = (str) => {
   var index = str.indexOf("?");
-  return str.substr(0, index);
+  if(index != -1){
+    return str.substr(0, index);
+  }
+  return str;
 };
 
 module.exports.replaceSpacesAndHyphens = (str) => {
