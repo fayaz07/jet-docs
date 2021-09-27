@@ -116,3 +116,12 @@ module.exports.createDirectories = async (outputDir) => {
   );
   console.log("Direcotries created...");
 };
+
+module.exports.createOnlyTargetDirectories = async (outputDir) => {
+  console.log("Creating direcotries...");
+  await mkdirp(outputDir, mkdirp.prototype, function (err) {
+    if (err) console.error(err);
+    // else console.log("created directory");
+  });
+  console.log("Direcotries created...");
+};

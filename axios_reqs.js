@@ -14,7 +14,7 @@ async function main() {
 
   // get the file paths
   inPath = readers.getInputFilePath();
-  outputDir = readers.getOutputDir();
+  outputDir = readers.getOutputDir().replace("/docs", "");
 
   // reading collection
   const inBytes = fileHandlers.readCollectionJsonFile(inPath);
@@ -23,11 +23,11 @@ async function main() {
   // reading variables stored in the collection
   const collnVariables = jsonHandlers.getVariables(collectionJSON);
 
-  await fileHandlers.createDirectories(outputDir);
+  await fileHandlers.createOnlyTargetDirectories(outputDir);
 
   console.log("Building your urls....");
   // jsonHandlers.generateDocs(collectionJSON, collnVariables, outputDir);
-  buildUrls(collectionJSON);
+  buildUrls(collectionJSON, outputDir);
   // console.log(collectionJSON)
   console.log("Requests building finished....");
   // console.log("Copying assets....");
@@ -35,28 +35,30 @@ async function main() {
   // console.log("API Docs built successfully....");
 }
 
-function buildUrls(colln) {
+function buildUrls(colln, outputDir) {
   var reqsForAxios = 'import axios from "./axios"';
   if (colln.item) {
-    reqsForAxios += findNestedRoutes(colln.item);
+    reqsForAxios += findNestedRoutes(colln.item, outputDir);
   }
   // reqsForAxios += "});";
   // console.log(reqsForAxios)
   // fileHandlers.createFileAndWrite("reqs.js", "./", reqsForAxios);
 }
 
-function findNestedRoutes(colln) {
+const _isSuccessFunction = "\n\nfunction _isSuccess(resp){\r\n  return resp.data.status == \"success\"\r\n}";
+
+function findNestedRoutes(colln, outputDir) {
   let requests = "";
   let exports = "export {";
   for (let i = 0; i < colln.length; i++) {
     let c = colln[i];
     if (c.item) {
-      let reqs = findNestedRoutes(c.item);
+      let reqs = findNestedRoutes(c.item, outputDir);
       let fileContent =
-        'import axios from "./axios"\n\n' + reqs.requests + reqs.exports;
+        'import axios from "./axios"\n\n' + reqs.requests + _isSuccessFunction + reqs.exports;
       fileHandlers.createFileAndWrite(
         `${getCamelcase(c.name)}.js`,
-        "./trr/",
+        outputDir,
         fileContent
       );
     } else {
@@ -91,7 +93,7 @@ function findNestedRoutes(colln) {
       }
 
       req +=
-        `\treturn response;\n} catch (e){\n\tconsole.log(\`Axios ${c.request.method} request failed: \$${e}\`);\nthrow e;\n}`;
+        `\treturn {success: _isSuccess(response.data.status), message: response.data.message, statusCode: response.status, data: response.data.data};\n} catch (e){\n\tconsole.log(\`Axios ${c.request.method} request failed: \${e}\`);\nreturn {success: false, message: e.response.data.message, statusCode: e.response.status, data: null};\nthrow e;\n}`;
 
       req += closeAsyncFunction();
       // getCamelcase(c.name) + ":" + `\"${formatUrl(c.request.url.raw)}\",\n`;
@@ -101,6 +103,10 @@ function findNestedRoutes(colln) {
     }
   }
   return { requests: requests, exports: exports + "}" };
+}
+
+function _isSuccess(resp){
+  return resp.data.status == "success"
 }
 
 function findOutParams(c) {
