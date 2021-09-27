@@ -93,7 +93,7 @@ function findNestedRoutes(colln, outputDir) {
       }
 
       req +=
-        `\treturn {success: _isSuccess(response.data.status), message: response.data.message, statusCode: response.status, data: response.data.data};\n} catch (e){\n\tconsole.log(\`Axios ${c.request.method} request failed: \${e}\`);\nreturn {success: false, message: e.response.data.message, statusCode: e.response.status, data: null};\nthrow e;\n}`;
+        `\treturn {success: _isSuccess(response), message: response.data.message, statusCode: response.status, data: response.data.data};\n} catch (e){\n\tconsole.log(\`Axios ${c.request.method} request failed: \${e}\`);\nreturn {success: false, message: e.response.data.message, statusCode: e.response.status, data: null};\nthrow e;\n}`;
 
       req += closeAsyncFunction();
       // getCamelcase(c.name) + ":" + `\"${formatUrl(c.request.url.raw)}\",\n`;
@@ -215,6 +215,8 @@ function paramsToJsonBody(params) {
     body = body.substr(0, body.length - 2);
     // console.log(url)
     body += "}";
+  }else{
+    body = "";
   }
   // console.log(body + "\n");
   return body;
