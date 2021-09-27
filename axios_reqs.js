@@ -214,10 +214,8 @@ function paramsToJsonBody(params) {
     });
     body = body.substr(0, body.length - 2);
     // console.log(url)
-    body += "}";
-  }else{
-    body = "";
   }
+  body += "}";
   // console.log(body + "\n");
   return body;
 }
