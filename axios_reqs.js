@@ -55,7 +55,7 @@ function findNestedRoutes(colln, outputDir) {
     if (c.item) {
       let reqs = findNestedRoutes(c.item, outputDir);
       let fileContent =
-        'import axios from "./axios"\n\n' + reqs.requests + _isSuccessFunction + reqs.exports;
+        'import axios from "../api/axios"\n\n' + reqs.requests + _isSuccessFunction + reqs.exports;
       fileHandlers.createFileAndWrite(
         `${getCamelcase(c.name)}.js`,
         outputDir,
@@ -84,7 +84,7 @@ function findNestedRoutes(colln, outputDir) {
         req += ` axios({
               method: \"${c.request.method}\",
               url: \"${formatUrl(c.request.url.raw)}\",
-              body: ${paramsToJsonBody(params)} 
+              data: ${paramsToJsonBody(params)} 
             });\n\t`;
 
         // req += ` axios.${c.request.method.toLowerCase()}(\`${formatUrl(
