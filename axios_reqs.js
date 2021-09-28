@@ -45,7 +45,8 @@ function buildUrls(colln, outputDir) {
   // fileHandlers.createFileAndWrite("reqs.js", "./", reqsForAxios);
 }
 
-const _isSuccessFunction = "\n\nfunction _isSuccess(resp){\r\n  return resp.data.status == \"success\"\r\n}";
+const _isSuccessFunction =
+  '\n\nfunction _isSuccess(resp){\r\n  return resp.data.status == "success"\r\n}';
 
 function findNestedRoutes(colln, outputDir) {
   let requests = "";
@@ -55,7 +56,10 @@ function findNestedRoutes(colln, outputDir) {
     if (c.item) {
       let reqs = findNestedRoutes(c.item, outputDir);
       let fileContent =
-        'import axios from "../api/axios"\n\n' + reqs.requests + _isSuccessFunction + reqs.exports;
+        'import axios from "../api/axios"\n\n' +
+        reqs.requests +
+        _isSuccessFunction +
+        reqs.exports;
       fileHandlers.createFileAndWrite(
         `${getCamelcase(c.name)}.js`,
         outputDir,
@@ -65,7 +69,17 @@ function findNestedRoutes(colln, outputDir) {
       exports += getCamelcase(c.name) + ",\n";
       // console.log(c.request.method)
       let params = findOutParams(c);
-      let req = writeAsyncFunction(getCamelcase(c.name), params);
+      // console.log(c.request.url);
+      let pathParamsAndUrl = appendPathParamsToUrl(c.request.url.raw);
+
+      let finalParams = params;
+
+      if (pathParamsAndUrl.params.length > 1) {
+        if (params.length > 1) finalParams += "," + pathParamsAndUrl.params;
+        else finalParams = pathParamsAndUrl.params;
+      }
+      let cUrl = pathParamsAndUrl.url;
+      let req = writeAsyncFunction(getCamelcase(c.name), finalParams);
 
       req += "\n";
       req += "try{\n\tlet response = await";
@@ -76,14 +90,11 @@ function findNestedRoutes(colln, outputDir) {
         // ),params))
         req += ` axios({
           method: \"${c.request.method}\",
-          url: \`${appendQueryParamsToUrl(
-            formatUrl(c.request.url.raw),
-            params
-          )}\`});\n\t`;
+          url: \`${appendQueryParamsToUrl(formatUrl(cUrl), params)}\`});\n\t`;
       } else {
         req += ` axios({
               method: \"${c.request.method}\",
-              url: \"${formatUrl(c.request.url.raw)}\",
+              url: \`${formatUrl(cUrl)}\`,
               data: ${paramsToJsonBody(params)} 
             });\n\t`;
 
@@ -92,8 +103,7 @@ function findNestedRoutes(colln, outputDir) {
         // )}\`, ${paramsToJsonBody(params)});\n\t`;
       }
 
-      req +=
-        `\treturn {success: _isSuccess(response), message: response.data.message, statusCode: response.status, data: response.data.data};\n} catch (e){\n\tconsole.log(\`Axios ${c.request.method} request failed: \${e}\`);\nreturn {success: false, message: e.response.data.message, statusCode: e.response.status, data: null};\nthrow e;\n}`;
+      req += `\treturn {success: _isSuccess(response), message: response.data.message, statusCode: response.status, data: response.data.data};\n} catch (e){\n\tconsole.log(\`Axios ${c.request.method} request failed: \${e}\`);\nreturn {success: false, message: e.response.data.message, statusCode: e.response.status, data: null};\n}`;
 
       req += closeAsyncFunction();
       // getCamelcase(c.name) + ":" + `\"${formatUrl(c.request.url.raw)}\",\n`;
@@ -105,8 +115,8 @@ function findNestedRoutes(colln, outputDir) {
   return { requests: requests, exports: exports + "}" };
 }
 
-function _isSuccess(resp){
-  return resp.data.status == "success"
+function _isSuccess(resp) {
+  return resp.data.status == "success";
 }
 
 function findOutParams(c) {
@@ -256,33 +266,43 @@ function writeAsyncFunction(funcName, params) {
 function closeAsyncFunction() {
   return "}";
 }
-/*
-{
-							"name": "disable user access",
-							"request": {
-								"method": "PATCH",
-								"header": [],
-								"body": {
-									"mode": "raw",
-									"raw": "{\n    \"userId\":\"6145665ea592c67f64e48a59\"\n}",
-									"options": {
-										"raw": {
-											"language": "json"
-										}
-									}
-								},
-								"url": {
-									"raw": "{{url}}/admin/user/disable",
-									"host": [
-										"{{url}}"
-									],
-									"path": [
-										"admin",
-										"user",
-										"disable"
-									]
-								}
-							},
-							"response": []
-						},
-*/
+
+const httpPrefix = "http://";
+const httpsPrefix = "https://";
+
+function appendPathParamsToUrl(url) {
+  let appendPrefix = "";
+
+  if (url.includes(httpPrefix)) {
+    appendPrefix = httpPrefix;
+    url = url.replace(httpPrefix, "");
+  } else if (url.includes(httpsPrefix)) {
+    appendPrefix = httpsPrefix;
+    url = url.replace(httpsPrefix, "");
+  }
+
+  if (url.endsWith("/")) {
+    url = url.substr(0, url.length - 1);
+  }
+  let params = [];
+
+  while (url.includes(":")) {
+    const index = url.indexOf(":");
+    const indexx = url.substr(index).indexOf("/");
+    if (indexx == -1) {
+      const param = url.substr(index).replace(":", "");
+      params.push(param);
+      url = replaceBetween(url, index, url.length, "${" + param + "}");
+    } else {
+      const param = url.substr(index, indexx).replace(":", "");
+      params.push(param);
+      url = replaceBetween(url, index, indexx, "${" + param + "}");
+    }
+  }
+
+  return { url: appendPrefix + url, params: params.join(",") };
+}
+
+function replaceBetween(str, start, end, what) {
+  return str.replace(str.substr(start, end), what);
+}
